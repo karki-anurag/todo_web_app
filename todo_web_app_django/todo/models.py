@@ -4,7 +4,7 @@ from django.db import models
 #always migarte after creating or modifying models
 # python manage.py makemigrations
 # python manage.py migrate
-class users(models.Model):
+class User(models.Model):
     user_id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=100, unique=True)
     first_name = models.CharField(max_length=100)
@@ -22,7 +22,7 @@ class users(models.Model):
     
 class Todo(models.Model):
     todo_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(users, on_delete=models.CASCADE, related_name='todos')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='todos')
     task_name = models.CharField(max_length=200)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

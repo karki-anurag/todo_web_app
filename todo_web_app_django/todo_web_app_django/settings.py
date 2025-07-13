@@ -113,7 +113,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-# AUTH_USER_MODEL = 'todo.User'
+AUTH_USER_MODEL = 'todo.User'
 
 # Static Files (CSS, JavaScript, Images, etc.)
 # Note: STATIC_ROOT and STATIC_URL are for static files (your app's assets),
