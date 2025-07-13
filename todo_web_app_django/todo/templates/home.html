@@ -1,3 +1,36 @@
 {% extends "base.html" %}
 
 {% block title %}Home{% endblock title %}
+<style>
+    h1{
+        text-align: center;
+        color: midnightblue;
+    }
+    p {
+        text-align: center; 
+    }
+</style>
+
+{% block body %}
+
+<div class="container">
+    <h1>Welcome to the Home page of Todo App</h1>
+
+    <p>This is the home page of your Todo application. You can navigate to different sections using the links below:</p>
+    <ul>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li>
+    </ul>
+    {% if messages %}
+    <ul class = messages>
+        {% for message in messages %}
+        <li {% if message.tag %} class = {{message.tags}} {% endif %}>
+        {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+
+{% endblock body %}

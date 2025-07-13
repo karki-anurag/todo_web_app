@@ -1,12 +1,14 @@
-
-from django.shortcuts import redirect, render
-from .forms import RegistrationForm, LoginForm
-from django.contrib.auth import authenticate 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import LoginForm, RegistrationForm
+from .models import User
+from django.contrib.auth import authenticate
 
 # Create your views here.
 def home(request):
     # This is a simple view that returns a response
-    return render(request, 'home.html', )
+    users = User.objects.all()
+    return render(request, 'home.html', {'users': users})
 
 def tasks_list(request):
     # This is a simple view that returns a response
@@ -29,18 +31,29 @@ def register(request):
 def login(request):
     # This is a simple view that returns a response
     if request.method == 'POST':
-        form = LoginForm(request.POST)
+        form = LoginForm(request, request.POST)
         if form.is_valid():
-            # Here you would typically authenticate the user
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
             if user is not None:
-                # User is authenticated, redirect to home
+                # User is authenticated, redirect to home or dashboard
+                messages.success(request, "Login successful")
                 return redirect('home')
             else:
-                # Invalid credentials, handle accordingly
-                form.add_error(None, 'Invalid username or password')
+                messages.error(request, "Invalid username or password")
+                return redirect('login')
+        else:
+            messages.error(request, "Invalid username or password")
+            return redirect('login')
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form':form})
+
+def about_us(request):
+    # This is a simple view that returns a response
+    return render(request, 'about_us.html')
+
+def profile(request):
+    # This is a simple view that returns a response
+    return render(request, 'profile.html')

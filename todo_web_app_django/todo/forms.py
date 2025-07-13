@@ -1,3 +1,4 @@
+from re import A
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from . models import User
@@ -26,12 +27,8 @@ class RegistrationForm(UserCreationForm):
         }
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Username'})
-    )
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Your Password'})
-    )
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Username'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Your Password'}))
 
 class TodoForm(forms.Form):
     task_name = forms.CharField(max_length=200, required=True)
