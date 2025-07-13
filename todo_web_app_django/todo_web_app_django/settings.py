@@ -113,12 +113,33 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+# AUTH_USER_MODEL = 'todo.User'
 
-STATIC_URL = 'static/'
+# Static Files (CSS, JavaScript, Images, etc.)
+# Note: STATIC_ROOT and STATIC_URL are for static files (your app's assets),
+# not user-uploaded files. Just including them for context.
+# ----------------------------------------------------------
 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Used by `collectstatic`
+
+# ----------------------------------------------------------
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Media Files (User-uploaded content)
+# ----------------------------------------------------------
+
+# MEDIA_ROOT: The absolute filesystem path to the directory that will hold user-uploaded files.
+# It's good practice to place this outside your main project directory or in a dedicated 'media' folder within it.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# MEDIA_URL: The URL that handles the media served from MEDIA_ROOT.
+# It must end in a slash if set to a non-empty value.
+MEDIA_URL = '/media/'
+# ----------------------------------------------------------
