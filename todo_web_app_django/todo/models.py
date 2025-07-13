@@ -1,21 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
 #always migarte after creating or modifying models
 # python manage.py makemigrations
 # python manage.py migrate
-class User(models.Model):
-    user_id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=100, unique=True)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
-    gender =models.CharField(max_length=10, choices=[("male", "Male"),("female", "Female"),("other", "Other")], default='Other')
-    phone_number = models.CharField(max_length=15, unique=True)
+class User(AbstractUser):
+    gender = models.CharField(max_length=10, choices=[("male", "Male"), ("female", "Female"), ("other", "Other")], default="other")
+    phone_number = models.CharField(max_length=15, unique=True, null=True, blank=True) 
     date_of_birth = models.DateField(null=True, blank=True)
-    address = models.TextField(max_length=500)
-    profile_picture = models.ImageField(upload_to= 'profile_picture/', null=True, blank=True)
+    address = models.TextField(max_length=500, null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True) # Fix upload_to path
+
 
     def __str__(self):
         return self.username

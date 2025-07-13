@@ -8,9 +8,9 @@ def home(request):
     # This is a simple view that returns a response
     return render(request, 'home.html', )
 
-def task_list(request):
+def tasks_list(request):
     # This is a simple view that returns a response
-    return render(request, 'task_list.html')
+    return render(request, 'tasks_list.html')
 
 def register(request):
     if request.method == 'POST':
@@ -21,15 +21,14 @@ def register(request):
         else:
             pass
     else:
-        form = RegistrationForm(request.POST)
-        
+        form = RegistrationForm(request.POST)      
     return render(request, 'register.html', {'form': form})
 
 
 
 def login(request):
     # This is a simple view that returns a response
-    if request.methood == 'POST':
+    if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
             # Here you would typically authenticate the user
