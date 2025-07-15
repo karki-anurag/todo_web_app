@@ -3,13 +3,12 @@
 from django.urls import path
 from todo import views
 
-urlpatterns = [
-    path('', views.home, name='home'),
-    path('register/', views.register, name='register'),
-    path('login/', views.login, name='login'),
-    path('tasks_list/', views.tasks_list, name='tasks_list'),
-    path('tasks_create/', views.task_create, name='tasks_create'),
 
+urlpatterns = [
+    path('register/', views.register, name='register'),
+    path('accounts/login/', views.login, name='login'),
+    path('accounts/login/lists/', views.lists, name='lists'),
+    path('accounts/login/create/', views.create, name='create'),
     path('about_us/', views.about_us, name='about_us'),
     path('profile/', views.profile, name='profile'),
 ]

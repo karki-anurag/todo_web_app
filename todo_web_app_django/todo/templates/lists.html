@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block title %}Tasks{% endblock title %}
+
+
+{% block body %}
+
+<div class="container">
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Tasks</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+            <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{task.task_name}}</td>
+            <td>{{task.description}}</td>
+            <td>None</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+
+{% endblock body %}
