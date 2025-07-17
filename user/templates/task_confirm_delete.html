@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block body %}
+<div class = 'container'>
+   <h1 class = "text-center  mt-4"> Are You sure want to delete? </h1>
+
+    <form method="post" >
+        {% csrf_token %}
+        <button class="btn btn-danger">Delete</button>
+        <a class = "btn btn-success" href="{% url 'lists' %}">Cancel</a>
+    </form>
+</div>
+{% endblock body %}
