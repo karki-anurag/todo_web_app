@@ -22,12 +22,16 @@
             <th scope="row">{{forloop.counter}}</th>
             <td>{{task.task_name}}</td>
             <td>{{task.description}}</td>
-            <td>None</td>
+            <td>
+                <a href="#">Mark</a>
+                <a href="#">Edit</a>
+                <a href="#">Delete</a>
+                
+            </td>
             </tr>
         {% endfor %}
     </tbody>
     </table>
+    <a href="{% url 'create' %}">Create</a>
 </div>
-
-
 {% endblock body %}
