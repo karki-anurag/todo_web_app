@@ -9,5 +9,5 @@ class UserTodo(models.Model):
     is_completed = models.BooleanField(default=False)
     priority = models.CharField(max_length=10, choices=[("low", "Low"), ("medium", "Medium"), ("high", "High")], default='medium')
 
-def __str__(self):
-    return f"{self.user.username} - {self.text[:10]}"
+    def __str__(self):
+        return f"{self.user.username}"

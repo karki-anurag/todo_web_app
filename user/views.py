@@ -7,7 +7,11 @@ from django.contrib.auth import login
 
 @login_required
 def lists(request):
-    tasks = UserTodo.objects.all()
+    user = request.user
+    tasks = UserTodo.objects.filter(user = user).values() #filter always takes keyword argument, 
+                                    #first user tells Look for the column (field) named user in the UserTodo database table
+                                    #second user represents the loged in user.
+    print(tasks)
     return render(request, 'lists.html', {'tasks': tasks})
 
 @login_required
